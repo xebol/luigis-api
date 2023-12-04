@@ -18,23 +18,22 @@ CREATE TABLE menuItems (
   menuItemID SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
-  price INTEGER NOT NULL,
-  food_image TEXT NOT NULL
+  price INTEGER NOT NULL
 );
 
 -- reviews table
-CREATE TABLE reviews(
+CREATE TABLE reviews (
   reviewsID SERIAL PRIMARY KEY,
   userID INTEGER REFERENCES customers(customerID) ON DELETE CASCADE,
-  menuItemID INTEGER REFERENCES menuItems(menuItemID) message TEXT NOT NULL,
+  message TEXT NOT NULL,
   rating INTEGER NOT NULL,
   date TIMESTAMP NOT NULL
 );
 
 -- cart table
-CREATE TABLE cart(
+CREATE TABLE cart (
   cartID SERIAL PRIMARY KEY,
-  userID INTEGER REFERENCES customers(customerID)
+  userID INTEGER REFERENCES customers(customerID),
   menuItemID INTEGER REFERENCES menuItems(menuItemID),
   quantity INTEGER NOT NULL,
   date TIMESTAMP NOT NULL
@@ -45,14 +44,14 @@ CREATE TABLE orders (
   orderID SERIAL PRIMARY KEY,
   userID INTEGER REFERENCES customers(customerID),
   total INTEGER NOT NULL,
-  status VARCHAR(50) NOT NULL,
+  status VARCHAR(255) NOT NULL,
   date TIMESTAMP NOT NULL
 );
 
 -- orderItems
-CREATE TABLE orderItems(
+CREATE TABLE orderItems (
   orderItemID SERIAL PRIMARY KEY,
   orderID INTEGER REFERENCES orders(orderID),
   menuItemID INTEGER REFERENCES menuItems(menuItemID),
-  quantity INTEGER NOT NULL,
+  quantity INTEGER NOT NULL
 );
