@@ -14,7 +14,7 @@ CREATE TABLE customers (
 );
 
 -- menu items table
-CREATE TABLE menuItems (
+CREATE TABLE menuitems (
   menuItemID SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
@@ -26,8 +26,7 @@ CREATE TABLE reviews (
   reviewsID SERIAL PRIMARY KEY,
   userID INTEGER REFERENCES customers(customerID) ON DELETE CASCADE,
   message TEXT NOT NULL,
-  rating INTEGER NOT NULL,
-  date TIMESTAMP NOT NULL
+  rating INTEGER NOT NULL
 );
 
 -- cart table
@@ -35,8 +34,7 @@ CREATE TABLE cart (
   cartID SERIAL PRIMARY KEY,
   userID INTEGER REFERENCES customers(customerID),
   menuItemID INTEGER REFERENCES menuItems(menuItemID),
-  quantity INTEGER NOT NULL,
-  date TIMESTAMP NOT NULL
+  quantity INTEGER NOT NULL
 );
 
 -- orders table
@@ -44,12 +42,11 @@ CREATE TABLE orders (
   orderID SERIAL PRIMARY KEY,
   userID INTEGER REFERENCES customers(customerID),
   total INTEGER NOT NULL,
-  status VARCHAR(255) NOT NULL,
-  date TIMESTAMP NOT NULL
+  status VARCHAR(255) NOT NULL
 );
 
 -- orderItems
-CREATE TABLE orderItems (
+CREATE TABLE orderitems (
   orderItemID SERIAL PRIMARY KEY,
   orderID INTEGER REFERENCES orders(orderID),
   menuItemID INTEGER REFERENCES menuItems(menuItemID),
