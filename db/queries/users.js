@@ -18,7 +18,7 @@ const registerCustomer = (customer) => {
 //get customer by id
 const getCustomerByID = (id) => {
   return client
-    .query("SELECT FROM customers WHERE customerID = $1 ;", [id])
+    .query("SELECT name FROM customers WHERE customerID = $1 ;", [id])
     .then((customer) => {
       return customer.rows[0];
     })
@@ -30,7 +30,7 @@ const getCustomerByID = (id) => {
 //customer login
 const customerLogin = (email_address, password) => {
   return client
-    .query("SELECT FROM customers WHERE email_address = $1 AND password = $2;", [email_address, password])
+    .query("SELECT name FROM customers WHERE email_address = $1 AND password = $2;", [email_address, password])
     .then((customer) => {
       return customer.rows[0];
     })
@@ -38,8 +38,6 @@ const customerLogin = (email_address, password) => {
       console.error(err);
     });
 };
-
-
 
 
 

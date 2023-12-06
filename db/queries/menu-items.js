@@ -16,7 +16,7 @@ const getAllMenuItems = () => {
 //get menuItem by ID
 const getMenuItem = (id) => {
   return client
-    .query("SELECT FROM menuitems WHERE menuItemID = $1;", [id])
+    .query("SELECT * FROM menuitems WHERE menuItemID = $1;", [id])
     .then((menuItem) => {
       return menuItem.rows[0];
     })

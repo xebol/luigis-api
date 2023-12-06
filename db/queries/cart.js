@@ -15,7 +15,7 @@ const addItemToCart = (userID, menuItemID, quantity) => {
 //remove menu item from cart
 const removeItem = (menuItemID) => {
   return client
-    .query("DELETE FROM cart WHERE menuItemID = $1", [menuItemID])
+    .query("DELETE FROM cart WHERE cartID = $1; menuItemID = $2", [menuItemID])
     .then((cart) => {
       return cart.rows[0];
     })
