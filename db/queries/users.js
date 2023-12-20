@@ -23,7 +23,7 @@ const getCustomerByID = (id) => {
       return customer.rows[0];
     })
     .catch((err) => {
-      console.error(err);
+       console.error(err);
     });
 };
 

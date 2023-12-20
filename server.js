@@ -14,6 +14,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
+const customerApiRoutes = require("./API-end-points/users-api");
+
+
+
+
+app.use("/api/customers", customerApiRoutes);
+
+
 
 
 
