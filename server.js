@@ -15,12 +15,13 @@ app.use(bodyParser.json());
 
 
 const customerRouter = require("./API-end-points/users-api");
+const menuItemsRouter = require("./API-end-points/menu-api");
 
 
 
 
 app.use("/customers", customerRouter);
-
+app.use("/menu", menuItemsRouter);
 
 
 

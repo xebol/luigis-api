@@ -3,7 +3,7 @@ const client = require("../connection");
 //get all menu items
 const getAllMenuItems = () => {
   return client
-    .query("SELECT * ALL FROM menuitems")
+    .query("SELECT * FROM menuitems")
     .then((menuItems) => {
       return menuItems.rows;
     })
