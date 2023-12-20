@@ -5,7 +5,7 @@ const getAllReviews = () => {
   return client
     .query("SELECT * FROM reviews")
     .then((reviews) => {
-      return reviews.rows[0];
+      return reviews.rows;
     })
     .catch((err) => {
       console.error(err);
