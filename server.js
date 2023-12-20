@@ -6,22 +6,20 @@ const http = require('http');
 const server = http.createServer(app);
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const PORT = process.env.port || 8000;
+const PORT = process.env.PORT || 8000;
 
 
-app.use(morgan('combined'));
+app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-const customerApiRoutes = require("./API-end-points/users-api");
+const customerRouter = require("./API-end-points/users-api");
 
 
 
 
-app.use("/api/customers", customerApiRoutes);
-
-
+app.use("/customers", customerRouter);
 
 
 

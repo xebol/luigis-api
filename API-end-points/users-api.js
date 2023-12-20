@@ -1,26 +1,42 @@
 const express = require("express");
 const router = express.Router();
-router.use(express.json());
-
 const customerQueries = require("../db/queries/users");
 
-
-//register a user
-router.post("/", (req, res) => {
-  const newCustomer = req.body;
-
+// get all users
+router.get("/", (req, res) => {
   customerQueries
-    .registerCustomer(newCustomer)
-    .then((customer) => {
-      res.send(customer);
+    .allUsers()
+    .then((customers) => {
+      res.json(customers);
     })
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
 });
 
+//register a user
+router.post("/", (req, res) => {
+  const newCustomer = req.body;
+
+  //check if all the neccessary credentials are met
+  if (!newCustomer || !newCustomer.email_address || !newCustomer.password) {
+    return res.status(400).json({ error: "Invalid input. Please provide email_address, and password." });
+  }
+
+  customerQueries
+    .registerCustomer(newCustomer)
+    .then((customer) => {
+      res.status(201).send(customer);
+    })
+    .catch((err) => {
+      console.error("Error registering customer:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
+
 //when a customer logs in
-router.post("/login ", (req, res) => {
+router.post("/", (req, res) => {
   const { email_address, password } = req.body;
 
   customerQueries
