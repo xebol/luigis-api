@@ -24,9 +24,20 @@ const removeItem = (menuItemID) => {
     });
 };
 
-
-
+//get all items from cart
+const getAllMenuItemsInCart = () => {
+  return client
+    .query("SELECT * FROM cart")
+    .then((items) => {
+      return items.rows;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
 
 module.exports = {
-  addItemToCart, removeItem
-}
+  addItemToCart, 
+  removeItem, 
+  getAllMenuItemsInCart
+};

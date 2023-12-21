@@ -17,14 +17,14 @@ app.use(bodyParser.json());
 const customerRouter = require("./API-end-points/users-api");
 const menuItemsRouter = require("./API-end-points/menu-api");
 const reviewsRouter = require("./API-end-points/reviews-api");
+const cartRouter = require("./API-end-points/cart-api");
 
 
 
 app.use("/customers", customerRouter);
 app.use("/menu", menuItemsRouter);
 app.use("/reviews", reviewsRouter);
-
-
+app.use("/cart", cartRouter);
 
 
 

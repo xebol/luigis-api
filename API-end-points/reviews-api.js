@@ -8,7 +8,6 @@ router.get("/", (req, res) => {
   reviewQueries
     .getAllReviews()
     .then((reviews) => {
-      console.log("Retrieved reviews:", reviews);
       res.json(reviews);
     })
     .catch((err) => {
